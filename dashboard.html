@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js'></script>
+    </head>
+    <body>
+        <div><a href="listeaqua.html">liste des aquariums</a></div>
+    </body>
+
+    <table>
+    <thead>
+        <tr><th>NAMEAQUARIUM</th><th>TEMPERATURE</th><th>DATE</th></tr>
+    </thead>
+        <tbody data-bind="foreach: people">
+            <tr>
+                <td data-bind="text: nameaquarium"></td>
+                <td data-bind="text: tempC"></td>
+                <td data-bind="text: tempDate"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var people = ko.observableArray()
+
+
+        ko.applyBindings(people);
+
+
+        $.getJSON("http://192.168.199.10:3001/dashboard", function (data) {
+            people(data);
+        });
+
+ /*
+        $.getJSON("ajax/test.json", function (data) {
+            people(data);
+        });
+        */
+    </script>
+
+
+</html>
