@@ -26,13 +26,13 @@ app.route('/lists').get(function(req, res)
 
 
 //app.get('/temp/:id').get(function(req, res)
-app.route('/temp/:id').get(function(req, res)
+app.route('/temp/:idkey').get(function(req, res)
 
     {
         MongoClient.connect(url, function(error, db) {
          if (error) return funcCallback(error);
         console.log("Connect to base mongo : jeedom");
-                db.collection("watertemperature").find({idkeyarduino:"1004"}).sort( { _id : -1 } ).limit(1).toArray(function(err, result) {
+                db.collection("watertemperature").find({idkeyarduino:, req.idkey}).sort( { _id : -1 } ).limit(1).toArray(function(err, result) {
                         if (err) throw err;
                         var data = {
                                 "data" : result
