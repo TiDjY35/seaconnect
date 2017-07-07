@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Kistes des aquas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js'></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+    
+    <table>
+    <thead>
+        <tr><th>ID</th><th>IDKEYARDUINO</th><th>NAMEAQUARIUM</th><th>DATELAUNCH</th><th>TEMPMIN</th><th>TEMPMAX</th><th>SPECIES</th></tr>
+    </thead>
+        <tbody data-bind="foreach: people">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: idkeyarduino"></td>
+                <td data-bind="text: nameaquarium"></td>
+                <td data-bind="text: datelaunch"></td>
+                <td data-bind="text: tempmin"></td>
+                <td data-bind="text: tempmax"></td>
+                <td data-bind="text: species"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var people = ko.observableArray()
+        
+        
+        ko.applyBindings(people);
+        
+        
+        $.getJSON("http://192.168.199.10:3001/liste", function (data) {
+            people(data);
+        });
+        
+ /*       
+        $.getJSON("ajax/test.json", function (data) {
+            people(data);
+        });
+        */
+    </script>
+
+
+</html>
