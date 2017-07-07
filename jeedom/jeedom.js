@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost/jeedom';
-var truc = '';
+var data = '';
+
 
 app.route('/lists').get(function(req, res)
 
@@ -12,18 +13,20 @@ app.route('/lists').get(function(req, res)
         console.log("Connect to base mongo : jeedom");
                 db.collection("arduino").find({}).toArray(function(err, result) {
                         if (err) throw err;
-                        var truc = {
+                        var data = {
                                 "data" : result
                         };
-                        console.log(truc);
+                        console.log(data);
                         res.setHeader('Content-Type', 'application/json');
-                        res.send(truc);
+                        res.send(data);
                         db.close();
                 });
         });
  });
 
-app.route('/temp-1004').get(function(req, res)
+
+//app.get('/temp/:id').get(function(req, res)
+app.route('/temp/:id').get(function(req, res)
 
     {
         MongoClient.connect(url, function(error, db) {
@@ -31,12 +34,12 @@ app.route('/temp-1004').get(function(req, res)
         console.log("Connect to base mongo : jeedom");
                 db.collection("watertemperature").find({idkeyarduino:"1004"}).sort( { _id : -1 } ).limit(1).toArray(function(err, result) {
                         if (err) throw err;
-                        var truc = {
+                        var data = {
                                 "data" : result
                         };
-                        console.log(truc);
+                        console.log(data);
                         res.setHeader('Content-Type', 'application/json');
-                        res.send(truc);
+                        res.send(data);
                         db.close();
                 });
         });
