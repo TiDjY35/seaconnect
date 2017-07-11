@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+# Start my node project
+cd /home/git/seaconnect/node && ./nodelisten nodemongo.php 14 > /var/log/seaconnect/nodelisten.log
