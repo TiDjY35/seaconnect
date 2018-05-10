@@ -1,0 +1,17 @@
+Install git client
+
+install wiringpi
+
+install pigiod
+wget abyz.co.uk/rpi/pigpio/pigpio.zip
+unzip pigpio.zip
+cd PIGPIO
+make
+make install
+
+Import code Arduino
+pin 12 pour data emetteur
+
+pin 11 pour data recepteur sur rpi
+
+launch recepteur433MHZ
