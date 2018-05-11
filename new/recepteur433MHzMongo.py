@@ -14,6 +14,11 @@ import time
 import pigpio
 
 import vw
+from pymongo import MongoClient
+client = MongoClient('192.168.199.64:27017')
+db = client.jeedom
+
+from datetime import datetime
 
 RX=11
 
@@ -30,7 +35,13 @@ print("En attente de la reception des donnees")
 while (time.time()-start) < 10000:
 
     while rx.ready():
-        print("".join(chr (c) for c in rx.get()))
+        print("".join(chr (c) for c in rx.get())) 
+        db.watertemperature.insert_one(
+            {
+                "idkeyarduino":1000,"temperature":20,"date":datetime.now() 
+            }
+        )
+        print '\nInserted data successfully\n'
 
 rx.cancel()
 
