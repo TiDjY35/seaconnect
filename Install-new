@@ -14,4 +14,8 @@ pin 12 pour data emetteur
 
 pin 11 pour data recepteur sur rpi
 
+install apt-get install python-pip
+
 launch recepteur433MHZ
+
+
